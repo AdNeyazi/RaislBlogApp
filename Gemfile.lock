@@ -313,7 +313,7 @@ DEPENDENCIES
   chartkick (~> 4.2)
   debug
   devise
-  dotenv-rails (~> 2.1, >= 2.1.1)
+  dotenv-rails
   friendly_id (~> 5.4)
   groupdate (~> 6.1)
   image_processing (~> 1.2)

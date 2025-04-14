@@ -84,5 +84,3 @@ test:
 production:
   <<: *default
   database: blog_application_production
-  username: blog_application
-  password: <%= Rails.application.credentials.dig(:prod_db_username) %>

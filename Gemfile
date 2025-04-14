@@ -100,4 +100,4 @@ gem 'acts_as_list', '~> 1.0'
 
 gem 'whenever', '~> 1.0'
 
-gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
+gem 'dotenv-rails', groups: [:development, :test]
