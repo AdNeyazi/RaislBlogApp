@@ -12,6 +12,9 @@
       Posted by <%= link_to post.user.full_name, user_path(post.user), class: "fw-semibold text-decoration-none" %>
     </p>
     <p class="text-muted"><%= pluralize(post.views, "view") %></p>
+    <% if controller.action_name == "show" %>
+      <p class="card-text"><%= post.body %></p>
+    <% end %>
   </div>
 
   <div class="card-footer bg-transparent border-0 text-center">
