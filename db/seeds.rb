@@ -1,3 +1,1 @@
-# run seed file based on environment
-puts 'Seeding database'
-load(Rails.root.join('db', 'seeds', "#{Rails.env.downcase}.rb"))
+User.create!(email: "adnanneyazi88@gmail.com", password: "password", role: "admin")
