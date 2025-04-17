@@ -1,19 +1,47 @@
-<div class="container">
-  <%= render @post %>
-  <div>
-    <%= link_to "Edit this post", edit_post_path(@post) %> |
-    <%= link_to "Back to posts", posts_path %>
-    <%= button_to "Destroy this post", @post, method: :delete %>
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+      <div id="<%= dom_id @post %>" class="card h-100 shadow border-0">
+        <% if @post.images.attached? %>
+          <div class="ratio ratio-16x9">
+            <%= image_tag(@post.images.first, class: "card-img-top object-fit-cover", style: "border-top-left-radius: .5rem; border-top-right-radius: .5rem;") %>
+          </div>
+        <% end %>
+
+        <div class="card-body text-center">
+          <h2 class="card-title fw-bold mb-2"><%= @post.title %></h2>
+          <p class="text-muted mb-2">
+            Posted by <%= link_to @post.user.full_name, user_path(@post.user), class: "fw-semibold text-decoration-none" %>
+          </p>
+          <p class="text-muted mb-3"><%= pluralize(@post.views, "view") %></p>
+
+          <% if controller.action_name == "show" %>
+            <p class="card-text text-start"><%= @post.body %></p>
+          <% end %>
+        </div>
+
+        <div class="card-footer bg-transparent border-0 text-center pb-4">
+          <%= link_to "Show this post", @post, class: "btn btn-primary w-100" %>
+        </div>
+      </div>
+
+      <div class="mt-4 d-flex justify-content-between flex-wrap gap-2">
+        <%= link_to "Edit this post", edit_post_path(@post), class: "btn btn-outline-secondary" %>
+        <%= link_to "Back to posts", posts_path, class: "btn btn-outline-info" %>
+        <%= button_to "Destroy this post", @post, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>
+      </div>
+    </div>
   </div>
-</div>
-<div class="container">
-  <%= render 'comments/form', 
-    post: @post, 
-    comment: @post.comments.build,
-    submit_label: "Reply" %>
-  <% @comments.each do |comment| %>
-    <%= render 'comments/comment', 
-    post: @post, 
-    comment: comment %>
-  <% end %>
+
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-10 col-lg-8">
+      <h4 class="mb-4">Comments</h4>
+
+      <%= render 'comments/form', post: @post, comment: @post.comments.build, submit_label: "Reply" %>
+
+      <% @comments.each do |comment| %>
+        <%= render 'comments/comment', post: @post, comment: comment %>
+      <% end %>
+    </div>
+  </div>
 </div>

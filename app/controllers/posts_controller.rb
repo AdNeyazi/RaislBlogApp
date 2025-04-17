@@ -67,12 +67,18 @@ class PostsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.find_by(slug: params[:id])
+
+    if @post.nil?
+      render file: "#{Rails.root}/public/404.html", status: :not_found and return
+    end
 
     # If an old id or a numeric id was used to find the record, then
     # the request slug will not match the current slug, and we should do
     # a 301 redirect to the new path
-    redirect_to @post, status: :moved_permanently if params[:id] != @post.slug
+    if params[:id] != @post.slug
+      redirect_to @post, status: :moved_permanently and return
+    end
   end
 
   # Only allow a list of trusted parameters through.
