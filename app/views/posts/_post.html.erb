@@ -1,5 +1,4 @@
-<%# app/views/posts/_post.html.erb %>
-<div id="<%= dom_id post %>" class="card h-100 shadow-sm border-0">
+<div id="<%= dom_id post %>" class="card h-100 shadow-sm border-0" style="border: 1px solid #CE53E0;">
   <% if post.images.attached? %>
     <div class="ratio ratio-16x9">
       <%= image_tag(post.images.first, class: "card-img-top object-fit-cover", style: "border-top-left-radius: .5rem; border-top-right-radius: .5rem;") %>
@@ -7,17 +6,17 @@
   <% end %>
 
   <div class="card-body text-center">
-    <h5 class="card-title"><%= post.title %></h5>
-    <p class="text-muted mb-1">
-      Posted by <%= link_to post.user.full_name, user_path(post.user), class: "fw-semibold text-decoration-none" %>
+    <h5 class="card-title" style="color: #5B1166;"><%= post.title %></h5>
+    <p class="mb-1" style="color: #83358F;">
+      Posted by <%= link_to post.user.full_name, user_path(post.user), class: "fw-semibold text-decoration-none", style: "color: #CE53E0;" %>
     </p>
-    <p class="text-muted"><%= pluralize(post.views, "view") %></p>
+    <p style="color: #83358F;"><%= pluralize(post.views, "view") %></p>
     <% if controller.action_name == "show" %>
-      <p class="card-text"><%= post.body %></p>
+      <p class="card-text text-muted"><%= post.body %></p>
     <% end %>
   </div>
 
   <div class="card-footer bg-transparent border-0 text-center">
-    <%= link_to "Show this post", post, class: "btn btn-primary w-100" %>
+    <%= link_to "Show this post", post, class: "btn w-100", style: "background-color: #341539; color: white;" %>
   </div>
 </div>

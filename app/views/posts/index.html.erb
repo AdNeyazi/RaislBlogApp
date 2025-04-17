@@ -2,7 +2,7 @@
 <p class="text-success"><%= notice %></p>
 
 <div class="container py-5">
-  <h1 class="text-center mb-5">Latest Posts</h1>
+  <h1 class="text-center mb-5" style="color: #341539;">Latest Posts</h1>
 
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <% @posts.each do |post| %>
@@ -13,6 +13,7 @@
   </div>
 
   <div class="text-center mt-4">
-    <%= link_to "New post", new_post_path, class: "btn btn-outline-success" %>
+    <%= link_to "New post", new_post_path, class: "btn", style: "border: 1px solid #83358F; color: #83358F;" %>
   </div>
 </div>
+
