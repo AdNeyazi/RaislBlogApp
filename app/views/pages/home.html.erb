@@ -36,4 +36,34 @@
       </ul>
     </div>
   <% end %>
+
+  <!-- Blog Carousel Section -->
+  <div class="card shadow rounded-4 p-4 mt-5" style="border-left: 6px solid #83358F;">
+    <h2 class="mb-4" style="color: #341539;">Latest Blog Posts</h2>
+    <div id="blogCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <% @posts&.first(3)&.each_with_index do |post, index| %>
+          <div class="carousel-item <%= 'active' if index == 0 %>">
+            <div class="card h-100 shadow-sm" style="border-left: 4px solid #83358F;">
+              <div class="card-body p-4">
+                <h3 class="card-title h4 mb-3" style="color: #5B1166;"><%= post.title %></h3>
+                <p class="card-text text-muted mb-4">
+                  <%= truncate(post.body.to_s, length: 150) %>
+                </p>
+                <%= link_to "Read More", post_path(post), class: "btn", style: "background-color: #83358F; color: white;" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#blogCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#blogCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
 </div>

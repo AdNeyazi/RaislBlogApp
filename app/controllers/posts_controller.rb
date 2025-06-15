@@ -3,13 +3,13 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[show index]
   # GET /posts or /posts.json
   def index
-    @posts = Post.all.includes(:user, :rich_text_body).order(created_at: :desc)
+    @posts = Post.includes(:user, images_attachments: :blob).order(created_at: :desc)
   end
 
   # GET /posts/1 or /posts/1.json
   def show
     @post.update(views: @post.views + 1)
-    @comments = @post.comments.includes(:user, :rich_text_body).order(created_at: :desc)
+    @comments = @post.comments.includes(:user).order(created_at: :desc)
 
     ahoy.track 'Viewed Post', post_id: @post.id
 
