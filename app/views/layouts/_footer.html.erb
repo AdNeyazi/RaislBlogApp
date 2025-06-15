@@ -1,0 +1,114 @@
+<!-- Footer -->
+<footer class="footer mt-auto py-5" style="background-color: #341539;">
+  <div class="container">
+    <div class="row g-4">
+      <!-- About Section -->
+      <div class="col-md-4">
+        <h5 class="text-white mb-4 fw-bold" style="border-bottom: 2px solid #83358F; padding-bottom: 0.5rem; display: inline-block;">
+          About Us
+        </h5>
+        <p class="text-white-50 mt-3" style="font-size: 0.95rem; line-height: 1.6;">
+          Sharing thoughts, experiences, and insights through the power of words. Join our community of readers and writers.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-md-4">
+        <h5 class="text-white mb-4 fw-bold" style="border-bottom: 2px solid #83358F; padding-bottom: 0.5rem; display: inline-block;">
+          Quick Links
+        </h5>
+        <ul class="list-unstyled mt-3">
+          <li class="mb-3">
+            <%= link_to root_path, class: "text-white-50 text-decoration-none d-flex align-items-center", style: "font-size: 0.95rem; transition: all 0.3s ease;" do %>
+              <i class="bi bi-house-door me-2"></i>
+              <span class="hover-effect">Home</span>
+            <% end %>
+          </li>
+          <li class="mb-3">
+            <%= link_to posts_path, class: "text-white-50 text-decoration-none d-flex align-items-center", style: "font-size: 0.95rem; transition: all 0.3s ease;" do %>
+              <i class="bi bi-journal-text me-2"></i>
+              <span class="hover-effect">Blog</span>
+            <% end %>
+          </li>
+          <li class="mb-3">
+            <%= link_to about_path, class: "text-white-50 text-decoration-none d-flex align-items-center", style: "font-size: 0.95rem; transition: all 0.3s ease;" do %>
+              <i class="bi bi-info-circle me-2"></i>
+              <span class="hover-effect">About</span>
+            <% end %>
+          </li>
+          <% if current_user %>
+            <li class="mb-3">
+              <%= link_to members_dashboard_path, class: "text-white-50 text-decoration-none d-flex align-items-center", style: "font-size: 0.95rem; transition: all 0.3s ease;" do %>
+                <i class="bi bi-speedometer2 me-2"></i>
+                <span class="hover-effect">Dashboard</span>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <!-- Social Links -->
+      <div class="col-md-4">
+        <h5 class="text-white mb-4 fw-bold" style="border-bottom: 2px solid #83358F; padding-bottom: 0.5rem; display: inline-block;">
+          Connect With Us
+        </h5>
+        <div class="d-flex gap-4 mt-3">
+          <a href="#" class="social-link" style="color: #CE53E0; font-size: 1.5rem; transition: all 0.3s ease;">
+            <i class="bi bi-twitter-x"></i>
+          </a>
+          <a href="#" class="social-link" style="color: #CE53E0; font-size: 1.5rem; transition: all 0.3s ease;">
+            <i class="bi bi-facebook"></i>
+          </a>
+          <a href="#" class="social-link" style="color: #CE53E0; font-size: 1.5rem; transition: all 0.3s ease;">
+            <i class="bi bi-instagram"></i>
+          </a>
+          <a href="#" class="social-link" style="color: #CE53E0; font-size: 1.5rem; transition: all 0.3s ease;">
+            <i class="bi bi-linkedin"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="row mt-5">
+      <div class="col-12">
+        <hr class="border-secondary opacity-25">
+        <p class="text-center text-white-50 mb-0" style="font-size: 0.9rem;">
+          © <%= Time.current.year %> RaislBlogApp. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .hover-effect {
+    position: relative;
+    display: inline-block;
+  }
+
+  .hover-effect::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: #CE53E0;
+    transition: width 0.3s ease;
+  }
+
+  a:hover .hover-effect::after {
+    width: 100%;
+  }
+
+  a:hover {
+    color: #CE53E0 !important;
+    transform: translateX(5px);
+  }
+
+  .social-link:hover {
+    color: #83358F !important;
+    transform: translateY(-3px);
+  }
+</style> 
