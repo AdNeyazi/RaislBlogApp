@@ -1,7 +1,7 @@
-<div id="<%= dom_id post %>" class="card h-100 shadow-sm border-0" style="border: 1px solid #CE53E0;">
+<div id="<%= dom_id post %>" class="card h-100 shadow-sm border border-purple-200 hover:border-purple-400 transition-all duration-300">
   <% if post.images.attached? %>
     <div class="ratio ratio-16x9">
-      <%= image_tag(post.images.first, class: "card-img-top object-fit-cover", style: "border-top-left-radius: .5rem; border-top-right-radius: .5rem;") %>
+      <%= image_tag(post.images.first, class: "card-img-top object-fit-cover rounded-t-lg") %>
     </div>
   <% end %>
 
@@ -16,7 +16,7 @@
     <% end %>
   </div>
 
-  <div class="card-footer bg-transparent border-0 text-center">
+  <div class="card-footer bg-transparent border-t border-purple-100 text-center">
     <%= link_to "Show this post", post, class: "btn w-100", style: "background-color: #341539; color: white;" %>
   </div>
 </div>
