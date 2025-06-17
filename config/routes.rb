@@ -30,6 +30,9 @@ Rails.application.routes.draw do
   end
 
   get 'about', to: 'pages#about'
+  get 'contact', to: 'pages#contact'
+  post 'contact', to: 'pages#send_contact'
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

@@ -1,15 +1,111 @@
 <p style="color: green"><%= notice %></p>
-<div class="container">
-  <h1>Projects</h1>
-  <p>This page contains my most recent projects, feel free to look around!</p>
-  <p>Web projects contain a link to the demo, while other projects contain other relevant links.</p>
-  <div id="projects">
-    <% @projects.each do |project| %>
-      <% if current_user&.admin? %>
-        <%= render "projects/draggable", project: project %>
-      <% else %>
-        <%= render project %>
+<div class="portfolio-container">
+  <div class="portfolio-header text-center py-5">
+    <h1 class="display-4 fw-bold" style="color: #341539;">My Portfolio</h1>
+    <p class="lead" style="color: #83358F;">Explore my latest projects and creative works</p>
+  </div>
+
+  <div class="container py-4">
+    <div class="row g-4" id="projects">
+      <% @projects.each do |project| %>
+        <div class="col-md-6 col-lg-4">
+          <% if current_user&.admin? %>
+            <%= render "projects/draggable", project: project %>
+          <% else %>
+            <%= render project %>
+          <% end %>
+        </div>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>
+
+<style>
+  .portfolio-container {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+  }
+
+  .portfolio-header {
+    background: linear-gradient(135deg, #83358F 0%, #CE53E0 100%);
+    color: white;
+    margin-bottom: 2rem;
+  }
+
+  .portfolio-header h1 {
+    color: white !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .portfolio-header p {
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+
+  .project-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+  }
+
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .project-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .project-content {
+    padding: 1.5rem;
+  }
+
+  .project-title {
+    color: #341539;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-description {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-link {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background-color: #83358F;
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .project-link:hover {
+    background-color: #CE53E0;
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  .project-tags {
+    margin-top: 1rem;
+  }
+
+  .project-tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: #f0f0f0;
+    color: #83358F;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+</style>

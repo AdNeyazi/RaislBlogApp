@@ -1,23 +1,92 @@
-<h2>Sign up</h2>
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-4 p-md-5">
+          <h2 class="text-center mb-4" style="color: #341539;">Sign up</h2>
+
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "needs-validation" }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+
+            <div class="form-floating mb-3">
+              <%= f.email_field :email, 
+                  class: "form-control", 
+                  id: "floatingEmail",
+                  placeholder: "name@example.com",
+                  autofocus: true, 
+                  autocomplete: "email" %>
+              <%= f.label :email, for: "floatingEmail" %>
+            </div>
+
+            <div class="form-floating mb-3">
+              <%= f.password_field :password, 
+                  class: "form-control", 
+                  id: "floatingPassword",
+                  placeholder: "Password",
+                  autocomplete: "new-password" %>
+              <%= f.label :password, for: "floatingPassword" do %>
+                Password
+                <% if @minimum_password_length %>
+                  <small class="text-muted">(<%= @minimum_password_length %> characters minimum)</small>
+                <% end %>
+              <% end %>
+            </div>
+
+            <div class="form-floating mb-4">
+              <%= f.password_field :password_confirmation, 
+                  class: "form-control", 
+                  id: "floatingPasswordConfirmation",
+                  placeholder: "Confirm Password",
+                  autocomplete: "new-password" %>
+              <%= f.label :password_confirmation, for: "floatingPasswordConfirmation" %>
+            </div>
+
+            <div class="d-grid">
+              <%= f.submit "Sign up", class: "btn btn-lg", style: "background-color: #83358F; color: white;" %>
+            </div>
+          <% end %>
+
+          <div class="text-center mt-4">
+            <p class="text-muted mb-0">Already have an account?</p>
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-<%= render "devise/shared/links" %>
+</div>
+
+<style>
+  .form-control:focus {
+    border-color: #83358F;
+    box-shadow: 0 0 0 0.25rem rgba(131, 53, 143, 0.25);
+  }
+
+  .form-floating > label {
+    color: #5B1166;
+  }
+
+  .form-floating > .form-control:focus ~ label,
+  .form-floating > .form-control:not(:placeholder-shown) ~ label {
+    color: #83358F;
+  }
+
+  .btn:hover {
+    background-color: #5B1166 !important;
+    color: white !important;
+  }
+
+  .text-muted {
+    color: #83358F !important;
+  }
+
+  a {
+    color: #CE53E0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  a:hover {
+    color: #83358F;
+  }
+</style>

@@ -1,10 +1,18 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" style="border-color: #CE53E0;">
   <div class="container-fluid">
-    <%= link_to "Ads Blog", root_path, class:'navbar-brand', style: "color: #5B1166;" %>
+    <%= link_to root_path, class: 'navbar-brand p-0' do %>
+      <%= image_tag 'adnan.png',
+            alt: 'Ads Blog Logo',
+            # class: 'd-inline-block align-text-top',
+            width: 60,
+            height: 60 %>
+    <% end %>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-      style="border-color: #CE53E0;">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation"
+            style="border-color: #CE53E0;">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -35,3 +43,50 @@
     </div>
   </div>
 </nav>
+
+<style>
+  .nav-link {
+    color: #83358F !important;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  .nav-link:hover {
+    color: #CE53E0 !important;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #CE53E0;
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .navbar-brand {
+    transition: all 0.3s ease;
+  }
+
+  .navbar-brand:hover {
+    color: #CE53E0 !important;
+  }
+
+  .login-btn {
+    background-color: #83358F;
+    color: white !important;
+    border-radius: 20px;
+    padding: 8px 20px;
+    transition: all 0.3s ease;
+  }
+
+  .login-btn:hover {
+    background-color: #CE53E0;
+    transform: translateY(-2px);
+  }
+</style>

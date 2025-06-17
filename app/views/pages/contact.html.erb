@@ -1,0 +1,279 @@
+<div class="contact-container">
+  <div class="contact-header text-center py-5">
+    <h1 class="display-4 fw-bold" style="color: #341539;">Contact Us</h1>
+    <p class="lead" style="color: #83358F;">We'd love to hear from you!</p>
+  </div>
+
+  <% if flash[:notice] %>
+    <div class="container">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%= flash[:notice] %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    </div>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <div class="container">
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= flash[:alert] %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="container py-4">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="contact-card">
+          <div class="row">
+            <!-- Contact Information -->
+            <div class="col-md-4 contact-info">
+              <div class="info-section">
+                <h3>Get in Touch</h3>
+                <div class="info-item">
+                  <i class="bi bi-geo-alt-fill"></i>
+                  <p>123 Blog Street<br>New York, NY 10001</p>
+                </div>
+                <div class="info-item">
+                  <i class="bi bi-envelope-fill"></i>
+                  <p>contact@adsblog.com</p>
+                </div>
+                <div class="info-item">
+                  <i class="bi bi-telephone-fill"></i>
+                  <p>+1 (555) 123-4567</p>
+                </div>
+                <div class="social-links">
+                  <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
+                  <a href="#" class="social-link"><i class="bi bi-twitter"></i></a>
+                  <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
+                  <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="col-md-8 contact-form">
+              <%= form_with(model: @contact_message || ContactMessage.new, url: contact_path, method: :post, local: true, class: "needs-validation") do |f| %>
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <div class="form-floating">
+                      <%= f.text_field :name, 
+                          class: "form-control #{'is-invalid' if @contact_message&.errors&.include?(:name)}", 
+                          id: "floatingName", 
+                          placeholder: "Your Name", 
+                          required: true %>
+                      <%= f.label :name, "Your Name", for: "floatingName" %>
+                      <% if @contact_message&.errors&.include?(:name) %>
+                        <div class="invalid-feedback">
+                          <%= @contact_message.errors[:name].join(", ") %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <div class="form-floating">
+                      <%= f.email_field :email, 
+                          class: "form-control #{'is-invalid' if @contact_message&.errors&.include?(:email)}", 
+                          id: "floatingEmail", 
+                          placeholder: "Your Email", 
+                          required: true,
+                          value: @contact_message&.email %>
+                      <%= f.label :email, "Your Email", for: "floatingEmail" %>
+                      <% if @contact_message&.errors&.include?(:email) %>
+                        <div class="invalid-feedback">
+                          <%= @contact_message.errors[:email].join(", ") %>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <div class="form-floating">
+                    <%= f.text_field :subject, 
+                        class: "form-control #{'is-invalid' if @contact_message&.errors&.include?(:subject)}", 
+                        id: "floatingSubject", 
+                        placeholder: "Subject", 
+                        required: true,
+                        value: @contact_message&.subject %>
+                    <%= f.label :subject, "Subject", for: "floatingSubject" %>
+                    <% if @contact_message&.errors&.include?(:subject) %>
+                      <div class="invalid-feedback">
+                        <%= @contact_message.errors[:subject].join(", ") %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <div class="form-floating">
+                    <%= f.text_area :message, 
+                        class: "form-control #{'is-invalid' if @contact_message&.errors&.include?(:message)}", 
+                        id: "floatingMessage", 
+                        placeholder: "Your Message", 
+                        style: "height: 150px", 
+                        required: true %><%= @contact_message&.message %>
+                    <%= f.label :message, "Your Message", for: "floatingMessage" %>
+                    <% if @contact_message&.errors&.include?(:message) %>
+                      <div class="invalid-feedback">
+                        <%= @contact_message.errors[:message].join(", ") %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+
+                <div class="d-grid">
+                  <%= f.submit "Send Message", class: "btn btn-lg", style: "background-color: #83358F; color: white;" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .contact-container {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+  }
+
+  .contact-header {
+    background: linear-gradient(135deg, #83358F 0%, #CE53E0 100%);
+    color: white;
+    margin-bottom: 2rem;
+  }
+
+  .contact-header h1 {
+    color: white !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .contact-header p {
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+
+  .contact-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .contact-info {
+    background: linear-gradient(135deg, #83358F 0%, #CE53E0 100%);
+    color: white;
+    padding: 2rem;
+    height: 100%;
+  }
+
+  .info-section h3 {
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+
+  .info-item i {
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    margin-top: 0.2rem;
+  }
+
+  .info-item p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .social-links {
+    margin-top: 2rem;
+  }
+
+  .social-link {
+    color: white;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .social-link:hover {
+    color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-3px);
+  }
+
+  .contact-form {
+    padding: 2rem;
+  }
+
+  .form-control {
+    border-color: #CE53E0;
+  }
+
+  .form-control:focus {
+    border-color: #83358F;
+    box-shadow: 0 0 0 0.25rem rgba(131, 53, 143, 0.25);
+  }
+
+  .form-floating > label {
+    color: #5B1166;
+  }
+
+  .form-floating > .form-control:focus ~ label,
+  .form-floating > .form-control:not(:placeholder-shown) ~ label {
+    color: #83358F;
+  }
+
+  .btn:hover {
+    background-color: #5B1166 !important;
+    color: white !important;
+  }
+
+  @media (max-width: 768px) {
+    .contact-info {
+      border-radius: 15px 15px 0 0;
+    }
+    
+    .contact-form {
+      border-radius: 0 0 15px 15px;
+    }
+  }
+
+  .alert {
+    border-radius: 10px;
+    margin-top: 1rem;
+  }
+
+  .alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+  }
+
+  .alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+  }
+
+  .invalid-feedback {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+
+  .form-control.is-invalid {
+    border-color: #dc3545;
+  }
+
+  .form-control.is-invalid:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+  }
+</style> 

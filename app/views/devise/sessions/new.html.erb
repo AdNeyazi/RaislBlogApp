@@ -1,54 +1,96 @@
-<div class="min-vh-100 d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, #341539, #83358F);">
-  <div class="bg-white p-5 rounded-4 shadow" style="width: 100%; max-width: 400px;">
-    <h2 class="text-center mb-4 fw-bold" style="color: #341539;">Login</h2>
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-4 p-md-5">
+          <h2 class="text-center mb-4" style="color: #341539;">Login</h2>
 
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "needs-validation" }) do |f| %>
-      <div class="mb-3">
-        <label class="form-label"><i class="fa fa-user me-2" style="color: #CE53E0;"></i>Username or Email</label>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-      </div>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "needs-validation" }) do |f| %>
+            <div class="form-floating mb-3">
+              <%= f.email_field :email, 
+                  class: "form-control", 
+                  id: "floatingEmail",
+                  placeholder: "name@example.com",
+                  autofocus: true, 
+                  autocomplete: "email" %>
+              <%= f.label :email, for: "floatingEmail" %>
+            </div>
 
-      <div class="mb-3">
-        <label class="form-label"><i class="fa fa-lock me-2" style="color: #CE53E0;"></i>Enter your Password</label>
-        <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
-      </div>
+            <div class="form-floating mb-3">
+              <%= f.password_field :password, 
+                  class: "form-control", 
+                  id: "floatingPassword",
+                  placeholder: "Password",
+                  autocomplete: "current-password" %>
+              <%= f.label :password, for: "floatingPassword" %>
+            </div>
 
-      <% if devise_mapping.rememberable? %>
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <div class="form-check">
-            <%= f.check_box :remember_me, class: "form-check-input" %>
-            <%= f.label :remember_me, class: "form-check-label" %>
+            <% if devise_mapping.rememberable? %>
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="form-check">
+                  <%= f.check_box :remember_me, class: "form-check-input" %>
+                  <%= f.label :remember_me, class: "form-check-label" %>
+                </div>
+                <%= link_to "Forgot password?", new_password_path(resource_name), class: "text-decoration-none" %>
+              </div>
+            <% end %>
+
+            <div class="d-grid">
+              <%= f.submit "Login", class: "btn btn-lg", style: "background-color: #83358F; color: white;" %>
+            </div>
+          <% end %>
+
+          <div class="text-center mt-4">
+            <p class="text-muted mb-0">Don't have an account?</p>
+            <%= render "devise/shared/links" %>
           </div>
-          <%= link_to "Forgot password?", new_password_path(resource_name), class: "text-decoration-none fw-semibold", style: "color: #5B1166;" %>
         </div>
-      <% end %>
-
-      <div class="d-grid mb-3">
-        <%= f.submit "Login", class: "btn rounded-pill text-white", style: "background-color: #CE53E0;" %>
       </div>
-    <% end %>
-
-    <p class="text-center mb-2">Don't have an account?
-      <%= link_to "Sign up", new_registration_path(resource_name), class: "text-decoration-none fw-semibold", style: "color: #83358F;" %>
-    </p>
-
-    <div class="text-center my-3 position-relative">
-      <hr>
-      <span class="position-absolute top-50 start-50 translate-middle px-3 bg-white" style="color: #5B1166;">or connect with</span>
-    </div>
-
-    <div class="d-flex justify-content-center gap-3">
-      <%= link_to "#", class: "btn btn-light rounded-circle shadow-sm p-2" do %>
-        <i class="fab fa-facebook-f" style="color: #341539;"></i>
-      <% end %>
-
-      <%= link_to "#", class: "btn btn-light rounded-circle shadow-sm p-2" do %>
-        <i class="fab fa-google" style="color: #CE53E0;"></i>
-      <% end %>
-
-      <%= link_to "#", class: "btn btn-light rounded-circle shadow-sm p-2" do %>
-        <i class="fab fa-github" style="color: #5B1166;"></i>
-      <% end %>
     </div>
   </div>
 </div>
+
+<style>
+  .form-control:focus {
+    border-color: #83358F;
+    box-shadow: 0 0 0 0.25rem rgba(131, 53, 143, 0.25);
+  }
+
+  .form-floating > label {
+    color: #5B1166;
+  }
+
+  .form-floating > .form-control:focus ~ label,
+  .form-floating > .form-control:not(:placeholder-shown) ~ label {
+    color: #83358F;
+  }
+
+  .btn:hover {
+    background-color: #5B1166 !important;
+    color: white !important;
+  }
+
+  .text-muted {
+    color: #83358F !important;
+  }
+
+  a {
+    color: #CE53E0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  a:hover {
+    color: #83358F;
+  }
+
+  .form-check-input:checked {
+    background-color: #83358F;
+    border-color: #83358F;
+  }
+
+  .form-check-input:focus {
+    border-color: #83358F;
+    box-shadow: 0 0 0 0.25rem rgba(131, 53, 143, 0.25);
+  }
+</style>
