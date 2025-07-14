@@ -337,7 +337,7 @@ DEPENDENCIES
   tzinfo-data
   web-console
   webdrivers
-  whenever (~> 1.0)
+  whenever
   wicked (~> 1.4)
 
 RUBY VERSION
